@@ -1,26 +1,30 @@
 let firstNum = 0;
-let secondNum = null;
-let operator = null;
+let secondNum;
+let operator;
 
-const numBtn = document.querySelectorAll('.num-btn;');
+const numBtn = document.querySelectorAll('.num-btn');
 const display = document.querySelector('#display');
 
-for (n in numBtn){
-    n.addEventListener('click', addNum());
-}
-
-function addNum(){
-    const num = this.textContent;
-    if (operator === null){
-        firstNum = parseString(firstNum) + parseString(num);
-        display.textContent(firstNum)
-    }
-    else if (secondNum === null){
-        secondNum = parseString(num);
-        display.textContent(firstNum + operator + secondNum);
-    }
-    else{
-        secondNum = parseString(secondNum) + parseString(num);
-        display.textContent(firstNum + operator + secondNum);
-    }
+for (const n of numBtn){
+    n.addEventListener('click', function(n){
+        n.stopImmediatePropagation;
+        console.log("clicked" + this.id);
+        if (operator === undefined && firstNum == 0){
+            firstNum = toString(this.id);
+            display.textContent = firstNum;
+        }
+        else if (firstNum != 0){
+            firstNum = firstNum.concat(toString(this.id));
+            display.textContent = firstNum;
+        }
+        else if (secondNum === undefined){
+            secondNum = this.id;
+            display.textContent = firstNum.concat(operator,tostring(secondNum));
+        }
+        else{
+            secondNum = toString(secondNum) + toString(this.id);
+            display.textContent = firstNum.concat(operator,tostring(secondNum));
+        }
+       
+    }, false);
 }
