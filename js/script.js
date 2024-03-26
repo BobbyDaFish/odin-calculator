@@ -5,6 +5,8 @@ let operator;
 const numBtn = document.querySelectorAll('.num-btn');
 const operatorBtn = document.querySelectorAll('.operator');
 const display = document.querySelector('#display');
+const calcBtn = document.querySelector('#calculate');
+const clearBtn = document.querySelector('#clear');
 
 for (const n of numBtn){
     n.addEventListener('click', function(n){
@@ -42,9 +44,56 @@ for (const o of operatorBtn){
             display.textContent = firstNum.concat(operator);
         }
         else{
-            firstNum = Calculate(firstNum, secondNum, operator);
+            firstNum = Calculate(operator);
             operator = this.id;
             display.textContent = firstNum.concat(operator);
         }
     }, false);
+}
+
+
+calcBtn.addEventListener('click', function(e){
+    e.stopImmediatePropagation
+    firstNum = Calculate(operator);
+    display.textContent = firstNum;
+}, false);
+
+clearBtn.addEventListener('click', Clear, false);
+
+function Calculate(op){
+    if (secondNum === undefined){
+        return firstNum;
+    }
+    else{
+        switch (op){
+            case '+':
+                firstNum = toString(parseInt(firstNum) + parseInt(secondNum));
+                secondNum = undefined;
+                operator = undefined;
+                return firstNum;
+            case '-':
+                firstNum = toString(parseInt(firstNum) - parseInt(secondNum));
+                secondNum = undefined;
+                operator = undefined;
+                return firstNum;
+            case '*':
+                firstNum = toString(parseInt(firstNum) * parseInt(secondNum));
+                secondNum = undefined;
+                operator = undefined;
+                return firstNum;
+            case '/':
+                
+                firstNum = toString(Math.round((parseInt(firstNum) / parseInt(secondNum))*100)/100);
+                secondNum = undefined;
+                operator = undefined;
+                return firstNum;
+        }
+    }
+}
+
+function Clear(){
+    firstNum = 0;
+    secondNum = undefined;
+    operator = undefined;
+    display.textContent = firstNum;
 }
