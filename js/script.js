@@ -10,20 +10,20 @@ for (const n of numBtn){
         n.stopImmediatePropagation;
         console.log("clicked" + this.id);
         if (operator === undefined && firstNum == 0){
-            firstNum = toString(this.id);
+            firstNum = this.id;
             display.textContent = firstNum;
         }
         else if (firstNum != 0){
-            firstNum = firstNum.concat(toString(this.id));
+            firstNum = firstNum.concat(this.id);
             display.textContent = firstNum;
         }
         else if (secondNum === undefined){
             secondNum = this.id;
-            display.textContent = firstNum.concat(operator,tostring(secondNum));
+            display.textContent = firstNum.concat(operator,secondNum);
         }
         else{
             secondNum = toString(secondNum) + toString(this.id);
-            display.textContent = firstNum.concat(operator,tostring(secondNum));
+            display.textContent = firstNum.concat(operator,secondNum);
         }
        
     }, false);
