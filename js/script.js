@@ -23,18 +23,22 @@ for (const n of numBtn){
             if (operator === undefined && firstNum == 0){
                 firstNum = this.id;
                 display.textContent = firstNum;
+                numCheck();
             }
             else if (firstNum != 0 && operator === undefined){
                 firstNum = firstNum.concat(this.id);
                 display.textContent = firstNum;
+                numCheck();
             }
             else if (secondNum === undefined){
                 secondNum = this.id;
                 display.textContent = firstNum.concat(operator,secondNum);
+                numCheck();
             }
             else{
                 secondNum = secondNum + this.id;
                 display.textContent = firstNum.concat(operator,secondNum);
+                numCheck();
             }
         }
 
@@ -53,11 +57,13 @@ for (const o of operatorBtn){
         else if (firstNum != 0 && secondNum === undefined){
             operator = this.id;
             display.textContent = firstNum.concat(operator);
+            numCheck();
         }
         else{
             firstNum = Calculate(operator);
             operator = this.id;
             display.textContent = firstNum.concat(operator);
+            numCheck();
         }
     }, false);
 }
@@ -67,6 +73,7 @@ calcBtn.addEventListener('click', function(e){
     e.stopImmediatePropagation
     firstNum = Calculate(operator);
     display.textContent = firstNum;
+    numCheck();
 }, false);
 
 clearBtn.addEventListener('click', Clear, false);
@@ -111,4 +118,13 @@ function Clear(){
     secondNum = undefined;
     operator = undefined;
     display.textContent = firstNum;
+}
+
+
+function numCheck(){
+if (display.textContent.length > 17){
+    firstNum = 0;
+    secondNum
+    display.textContent = "Too big! Resetting.";
+}
 }
