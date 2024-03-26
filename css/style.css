@@ -24,8 +24,8 @@ button{
 #calc-cont{
     flex 1;
     width: 800px;
-    height: 1000px;
-    border: 4px inset #cccccc;
+    height: 800px;
+    border: 4px outset #cccccc;
     display: flex;
     flex-direction: column;
 }
@@ -40,5 +40,9 @@ button{
     text-align: right;
 }
 #btn-pad{
+    display:flex;
+    flex-direction: column;
     flex: 10;
+    border: 3px inset #505050;
+    margin:15px;
 }
