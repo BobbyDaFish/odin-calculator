@@ -3,6 +3,7 @@ let secondNum;
 let operator;
 
 const numBtn = document.querySelectorAll('.num-btn');
+const operatorBtn = document.querySelectorAll('.operator');
 const display = document.querySelector('#display');
 
 for (const n of numBtn){
@@ -13,7 +14,7 @@ for (const n of numBtn){
             firstNum = this.id;
             display.textContent = firstNum;
         }
-        else if (firstNum != 0){
+        else if (firstNum != 0 && operator === undefined){
             firstNum = firstNum.concat(this.id);
             display.textContent = firstNum;
         }
@@ -22,9 +23,28 @@ for (const n of numBtn){
             display.textContent = firstNum.concat(operator,secondNum);
         }
         else{
-            secondNum = toString(secondNum) + toString(this.id);
+            secondNum = secondNum + this.id;
             display.textContent = firstNum.concat(operator,secondNum);
         }
        
+    }, false);
+}
+
+for (const o of operatorBtn){
+    o.addEventListener('click', function(e){
+        e.stopImmediatePropagation;
+        console.log("clicked" + this.id);
+        if (operator === undefined && firstNum == 0){
+            display.textContent = firstNum;
+        }
+        else if (firstNum != 0 && secondNum === undefined){
+            operator = this.id;
+            display.textContent = firstNum.concat(operator);
+        }
+        else{
+            firstNum = Calculate(firstNum, secondNum, operator);
+            operator = this.id;
+            display.textContent = firstNum.concat(operator);
+        }
     }, false);
 }
