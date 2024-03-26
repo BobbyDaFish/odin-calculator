@@ -122,7 +122,7 @@ function Clear(){
 
 
 function numCheck(){
-if (display.textContent.length > 17){
+if (display.textContent.length > 17 || firstNum > 99999999999999999){
     firstNum = 0;
     secondNum = undefined;
     operator = undefined;
