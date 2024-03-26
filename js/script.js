@@ -1,12 +1,13 @@
 let firstNum = 0;
 let secondNum;
 let operator;
+let solved = false;
 
 const numBtn = document.querySelectorAll('.num-btn');
 const operatorBtn = document.querySelectorAll('.operator');
 const display = document.querySelector('#display');
 const calcBtn = document.querySelector('#calculate');
-const clearBtn = document.querySelector('#clear');
+const clearBtn = document.querySelector('#clr-btn');
 
 for (const n of numBtn){
     n.addEventListener('click', function(n){
@@ -67,26 +68,30 @@ function Calculate(op){
     else{
         switch (op){
             case '+':
-                firstNum = toString(parseInt(firstNum) + parseInt(secondNum));
+                firstNum = parseInt(firstNum) + parseInt(secondNum);
                 secondNum = undefined;
                 operator = undefined;
-                return firstNum;
+                solved = true;
+                return firstNum.toString();
             case '-':
-                firstNum = toString(parseInt(firstNum) - parseInt(secondNum));
+                firstNum = parseInt(firstNum) - parseInt(secondNum);
                 secondNum = undefined;
                 operator = undefined;
-                return firstNum;
+                solved = true;
+                return firstNum.toString();
             case '*':
-                firstNum = toString(parseInt(firstNum) * parseInt(secondNum));
+                firstNum = parseInt(firstNum) * parseInt(secondNum);
                 secondNum = undefined;
                 operator = undefined;
-                return firstNum;
+                solved = true;
+                return firstNum.toString();
             case '/':
                 
-                firstNum = toString(Math.round((parseInt(firstNum) / parseInt(secondNum))*100)/100);
+                firstNum = Math.round((parseInt(firstNum) / parseInt(secondNum))*100)/100;
                 secondNum = undefined;
                 operator = undefined;
-                return firstNum;
+                solved = true;
+                return firstNum.toString();
         }
     }
 }
