@@ -124,7 +124,8 @@ function Clear(){
 function numCheck(){
 if (display.textContent.length > 17){
     firstNum = 0;
-    secondNum
+    secondNum = undefined;
+    operator = undefined;
     display.textContent = "Too big! Resetting.";
 }
 }
